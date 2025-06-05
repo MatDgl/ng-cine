@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 40px auto;
+}
+
+.top-frame {
+  background-image: url("../../../assets/bg-profile.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.8rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  padding: 1rem;
+}
+
+.user-nickname {
+  text-align: center;
+  font: 800 2.375rem Montserrat, Arial, Sans-Serif
+}
+
+.user-signup-date {
+  margin-bottom: .625rem;
+  font: 400 0.938rem Montserrat, Arial, Sans-Serif;
+}
+
+.btn-page {
+  margin: 0 5px;
+}
+
+a.active {
+  color: white;
+}

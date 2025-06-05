@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <div class="toolbar-content">
+    <span class="logo" routerLink="/" style="cursor: pointer;">NgCine</span>
+
+    <span class="spacer"></span>
+
+    <mat-form-field appearance="fill">
+      <input matInput [(ngModel)]="query" (change)="onSearch()" (keyup.enter)="onSearch()"
+        placeholder="Rechercher un film..." />
+      <mat-icon matSuffix color="grey">search</mat-icon>
+    </mat-form-field>
+
+    <span class="spacer"></span>
+  </div>
+</mat-toolbar>

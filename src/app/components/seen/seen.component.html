@@ -1,0 +1,15 @@
+<navbar></navbar>
+<div class="container">
+    <div class="top-frame">
+        <div class="user-info">
+            <img src="assets/avatar.png" alt="avatar" class="avatar">
+            <div class="user-nickname">Mathieu</div>
+            <div class="user-signup-date">Membre depuis le 05 juin 2025</div>
+        </div>
+    </div>
+    <div class="btn-pages"><a *ngFor="let item of items" mat-stroked-button [href]="item.url"
+            color="primary" class="btn-page" [class.active]="currentPath === item.url" >
+            {{ item.label }}
+        </a></div>
+</div>
+<router-outlet></router-outlet>
