@@ -1,0 +1,16 @@
+<div *ngIf="movie" class="card">
+    <a [href]="movie.href || ''">
+        <div class="card-img-container">
+            <img [src]="movie.src" [alt]="movie.title" class="card-img">
+            <div *ngIf="movie.rating" class="card-bottom" >
+                <ng-container *ngFor="let star of getStars(movie.rating)">
+                    <mat-icon aria-label="Étoiles" style="font-size: 1.4rem">star</mat-icon>
+                </ng-container>
+            </div>
+        </div>
+    </a>
+
+    <div class="card-title">
+        <h5 class="title">{{ movie.title }}</h5>
+    </div>
+</div>

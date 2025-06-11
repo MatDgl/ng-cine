@@ -5,7 +5,7 @@
 }
 
 .top-frame {
-  background-image: url("../../../assets/bg-profile.png");
+  background-image: url("../../../assets/img/bg-profile.png");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -32,12 +32,12 @@
 
 .user-nickname {
   text-align: center;
-  font: 800 2.375rem Montserrat, Arial, Sans-Serif
+  font: 800 2.375rem Montserrat, Arial, Sans-Serif;
 }
 
 .user-signup-date {
-  margin-bottom: .625rem;
-  font: 400 0.938rem Montserrat, Arial, Sans-Serif;
+  margin-bottom: 0.625rem;
+  font: 400 1rem Montserrat, Arial, Sans-Serif;
 }
 
 .btn-page {
@@ -46,4 +46,20 @@
 
 a.active {
   color: white;
+}
+
+.titlebar {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0 1rem 0;
+}
+
+.titlebar .title {
+  font-family: montserrat, Arial, Sans-Serif;
+  font-weight: 800;
+  font-size: 2.75rem;
+}
+
+.tab-content {
+  margin: 1rem;
 }

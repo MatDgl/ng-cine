@@ -3,11 +3,20 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../shared/material/material.module';
+import { SeenMovieComponent } from './movie/movie.component';
+import { SeenSerieComponent } from './serie/serie.component';
 
 @Component({
   selector: 'app-seen',
   standalone: true,
-  imports: [NavbarComponent, RouterModule, CommonModule, MaterialModule],
+  imports: [
+    NavbarComponent,
+    RouterModule,
+    CommonModule,
+    MaterialModule,
+    SeenMovieComponent,
+    SeenSerieComponent,
+  ],
   templateUrl: './seen.component.html',
   styleUrl: './seen.component.scss',
 })
@@ -22,6 +31,7 @@ export class SeenComponent implements OnInit {
     { label: 'Préférences', index: 6, url: '/preferences' },
     { label: 'Profil', index: 7, url: '/profile' },
   ];
+
   currentPath = '';
   constructor() {}
 
