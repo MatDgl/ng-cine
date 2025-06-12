@@ -1,16 +1,20 @@
-<div *ngIf="movie" class="card">
-    <a [href]="movie.href || ''">
+@if (data) {
+<div class="card">
+    <a [href]="data.href || ''">
         <div class="card-img-container">
-            <img [src]="movie.src" [alt]="movie.title" class="card-img">
-            <div *ngIf="movie.rating" class="card-bottom" >
-                <ng-container *ngFor="let star of getStars(movie.rating)">
-                    <mat-icon aria-label="Étoiles" style="font-size: 1.4rem">star</mat-icon>
-                </ng-container>
+            <img [src]="data.src" [alt]="data.title" class="card-img">
+            @if (data.rating) {
+            <div class="card-bottom">
+                @for (star of getStars(data.rating); track star) {
+                <mat-icon aria-label="Étoiles" style="font-size: 1.4rem">star</mat-icon>
+                }
             </div>
+            }
         </div>
     </a>
 
     <div class="card-title">
-        <h5 class="title">{{ movie.title }}</h5>
+        <h5 class="title">{{ data.title }}</h5>
     </div>
 </div>
+}

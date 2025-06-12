@@ -1,36 +1,17 @@
-<div class="filters">
-    <!-- Tri -->
-    <mat-form-field>
-        <mat-label>Trier par</mat-label>
-        <mat-select [value]="sortSubject.value" (selectionChange)="onSortChange($event.value)">
-            <!-- Old for loop syntax -->
-            <!-- @for (sort of sortBy; track sort.value) {
-        <mat-option [value]="sort.value">{{sort.label}}</mat-option>
-        } -->
-            <!-- New Angular syntax -->
-            <ng-container *ngFor="let sort of sortBy; trackBy: trackById">
-                <mat-option class="option" [value]="sort.value">{{sort.label}}</mat-option>
-            </ng-container>
-        </mat-select>
-    </mat-form-field>
+<app-filters [context]="context" />
 
-    <!-- Filter par note -->
-    <mat-form-field class="mb-5">
-        <mat-label>Filtrer par</mat-label>
-        <mat-select [value]="rateSubject.value" (selectionChange)="onRateChange($event.value)">
-            <ng-container *ngFor="let rate of rates; trackBy: trackById">
-                <mat-option class="option" [value]="rate.value">{{rate.label}}</mat-option>
-            </ng-container>
-        </mat-select>
-    </mat-form-field>
-</div>
-<div class="movies">
-    <ng-container *ngIf="movies$ | async as movies; else noMovies">
-        <ng-container *ngFor="let movie of movies; trackBy: trackById">
-            <app-card [movie]="movie"></app-card>
-        </ng-container>
-    </ng-container>
-    <ng-template #noMovies>
-        <p class="no-movies">Aucun film trouvé.</p>
-    </ng-template>
-</div>
+@if (movies$ | async; as movies) {
+  @if (movies.length > 0) {
+    <div class="movies">
+      @for (movie of movies; track movie.id) {
+        <app-card [data]="movie"></app-card>
+      }
+    </div>
+
+    @if (canShowMore$ | async) {
+      <button (click)="showMore()" class="btn-more" mat-stroked-button>Voir plus</button>
+    }
+  } @else {
+    <div class="no-movies">Aucun film trouvé.</div>
+  }
+}

@@ -7,6 +7,10 @@ export interface Movie {
   lastModified?: Date; // Optional property for last modified date
 }
 
+export interface Serie extends Movie {
+  followed: boolean; // Optional property for followed status
+}
+
 export interface Sort {
   id: number;
   value: SortOption;
@@ -17,4 +21,9 @@ export enum SortOption {
   TITLE = 'titleAsc',
   RATING_DESC = 'ratingDesc',
   RATING_ASC = 'ratingAsc',
+}
+
+export enum Context {
+  MOVIE = 'movie',
+  SERIE = 'serie',
 }

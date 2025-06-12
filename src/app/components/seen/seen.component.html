@@ -7,15 +7,19 @@
             <div class="user-signup-date">Membre depuis le 05 juin 2025</div>
         </div>
     </div>
-    <div class="btn-pages"><a *ngFor="let item of items" mat-stroked-button [href]="item.url" color="primary"
-            class="btn-page" [class.active]="currentPath === item.url">
+    <div class="btn-pages">
+        @for (item of items; track item.url) {
+        <a mat-stroked-button [href]="item.url" color="primary" class="btn-page"
+            [class.active]="currentPath === item.url">
             {{ item.label }}
-        </a></div>
+        </a>
+        }
+    </div>
     <div class="titlebar">
         <h1 class="title">Mes notes</h1>
     </div>
     <mat-tab-group class="mb-5" mat-stretch-tabs="false" mat-align-tabs="center">
-        <mat-tab label="Films"><app-seen-movie class="tab-content"/></mat-tab>
+        <mat-tab label="Films"><app-seen-movie class="tab-content" /></mat-tab>
         <mat-tab label="Séries"><app-seen-serie class="tab-content" /></mat-tab>
     </mat-tab-group>
 

@@ -1,1 +1,16 @@
-<p>serie works!</p>
+<app-filters [context]="context" />
+@if (series$ | async; as series) {
+  @if (series.length > 0) {
+    <div class="series">
+      @for (serie of series; track serie.id) {
+        <app-card [data]="serie"></app-card>
+      }
+    </div>
+
+        @if (canShowMore$ | async) {
+      <button (click)="showMore()" class="btn-more" mat-stroked-button>Voir plus</button>
+    }
+  } @else {
+    <div class="no-series">Aucune série trouvée.</div>
+  }
+}

@@ -1,0 +1,15 @@
+.series {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.no-series {
+  text-align: center;
+  font: 400 1.2rem Montserrat, Arial, Sans-Serif;
+}
+
+.btn-more {
+  display: block;
+  margin: 2rem auto;
+}

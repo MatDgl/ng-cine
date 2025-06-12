@@ -1,0 +1,11 @@
+mat-form-field {
+  margin-right: 1rem;
+}
+
+.filters {
+  margin-bottom: 2rem;
+}
+
+::ng-deep .mat-selected .mat-option-text {
+  color: white !important;
+}

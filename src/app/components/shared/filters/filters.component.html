@@ -1,0 +1,38 @@
+<div class="filters">
+    <!-- Tri -->
+    <mat-form-field>
+        <mat-label>Trier par</mat-label>
+        <mat-select [value]="selectedSort" (selectionChange)="onSortChange($event.value)">
+            <!-- Old for loop syntax -->
+            <!-- <ng-container *ngFor="let sort of sortBy; trackBy: trackById">
+                <mat-option class="option" [value]="sort.value">{{sort.label}}</mat-option>
+            </ng-container> -->
+            <!-- New for loop syntax -->
+            @for (sort of sortBy; track sort.value) {
+            <mat-option [value]="sort.value">{{sort.label}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <!-- Filtrer par statut de série -->
+     @if (context === Context.SERIE) {
+    <mat-form-field class="mb-5">
+        <mat-label>Filtrer par statut</mat-label>
+        <mat-select [value]="selectedSerieType" (selectionChange)="onSerieTypeChange($event.value)">
+            @for (serieType of serieTypes; track serieType.value) {
+            <mat-option class="option" [value]="serieType.value">{{serieType.label}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    }
+
+    <!-- Filter par note -->
+    <mat-form-field class="mb-5">
+        <mat-label>Filtrer par</mat-label>
+        <mat-select [value]="selectedRate" (selectionChange)="onRateChange($event.value)">
+            @for (rate of rates; track rate.value) {
+            <mat-option class="option" [value]="rate.value">{{rate.label}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+</div>

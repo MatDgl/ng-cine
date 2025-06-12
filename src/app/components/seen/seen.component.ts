@@ -33,7 +33,6 @@ export class SeenComponent implements OnInit {
   ];
 
   currentPath = '';
-  constructor() {}
 
   ngOnInit(): void {
     this.currentPath = window.location.pathname;

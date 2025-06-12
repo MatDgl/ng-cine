@@ -8,13 +8,12 @@ import { Movie } from '../../../models/models';
   standalone: true,
   imports: [MaterialModule, CommonModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
 })
 export class CardComponent {
+  @Input() data: Movie | null = null;
 
-  @Input() movie: Movie | null = null;
-
-getStars(rating: number): number[] {
-  return Array(Math.round(rating)).fill(0);
-}
+  getStars(rating: number): number[] {
+    return Array(Math.round(rating)).fill(0);
+  }
 }
