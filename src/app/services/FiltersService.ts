@@ -1,48 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Movie, Serie, SortOption } from '../models/models';
+import { MovieService } from './api/movie.service';
 
 @Injectable({ providedIn: 'root' })
 export class FiltersService {
-  // Valeurs initiales
-  private readonly allMovies: Movie[] = [
-    { title: 'Troie', src: 'assets/img/movie/troie.jpg', id: 0, rating: 5 },
-    {
-      title: 'Django Unchained',
-      src: 'assets/img/movie/django.jpg',
-      id: 1,
-      rating: 5,
-    },
-    {
-      title: 'Interstellar',
-      src: 'assets/img/movie/interstellar.jpg',
-      id: 2,
-      rating: 4,
-    },
-    {
-      title: 'Inception',
-      src: 'assets/img/movie/inception.jpg',
-      id: 3,
-      rating: 5,
-    },
-    {
-      title: 'The Dark Knight',
-      src: 'assets/img/movie/dark_knight.jpg',
-      id: 4,
-      rating: 4,
-    },
-    {
-      title: 'Pulp Fiction',
-      src: 'assets/img/movie/pulp_fiction.jpg',
-      id: 5,
-      rating: 5,
-    },
-    { title: 'Seven', src: 'assets/img/movie/seven.jpg', id: 6, rating: 4.5 },
-  ];
+  constructor(private movieService: MovieService) {}
 
   private readonly allSeries: Serie[] = [];
 
   // Subjects exposés
+  private readonly allMovies$ = new BehaviorSubject<Movie[]>([]);
+
   private rateSubject = new BehaviorSubject<number>(0);
   private sortSubject = new BehaviorSubject<SortOption>(
     SortOption.LASTMODIFIED,
@@ -55,18 +24,17 @@ export class FiltersService {
   public serieType$ = this.serieTypeSubject.asObservable();
   public visibleCount$ = this.visibleCountSubject.asObservable();
 
-  public movies$: Observable<Movie[]> = combineLatest([
+  public readonly movies$: Observable<Movie[]> = combineLatest([
+    this.allMovies$,
     this.rate$,
     this.sort$,
   ]).pipe(
-    map(([rate, sort]) => {
-      let data = [...this.allMovies];
-
+    map(([movies, rate, sort]) => {
+      let filtered = [...movies];
       if (rate > 0) {
-        data = data.filter((movie) => movie.rating === rate);
+        filtered = filtered.filter((movie) => movie.rating === rate);
       }
-
-      return this.sortMovies(data, sort);
+      return this.sortMovies(filtered, sort);
     }),
   );
 
@@ -108,6 +76,14 @@ export class FiltersService {
     }
   }
 
+  loadMovies() {
+    this.movieService.getMovies().subscribe({
+      next: (movies) => this.allMovies$.next(movies),
+      error: (err) =>
+        console.error('Erreur lors du chargement des films :', err),
+    });
+  }
+
   limitedMovies$: Observable<Movie[]> = combineLatest([
     this.movies$,
     this.visibleCount$,
@@ -117,7 +93,6 @@ export class FiltersService {
     this.series$,
     this.visibleCount$,
   ]).pipe(map(([series, count]) => series.slice(0, count)));
-
 
   showMore(): void {
     this.visibleCountSubject.next(this.visibleCountSubject.value + 20);

@@ -1,3 +1,9 @@
+.card {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .card-img-container {
   position: relative;
@@ -5,12 +11,13 @@
 }
 
 .card-img {
+  max-width: 150px;
   border-radius: 8px;
 }
 
 .card-bottom {
   position: absolute;
-  bottom: 0;
+  bottom: 0.3rem; /* Ajustement pour le bas de la carte */
   width: 100%;
   height: 2rem;
   background: rgba(0, 0, 0, 0.9);
@@ -21,8 +28,19 @@
   border-radius: 0 0 8px 8px;
 }
 
-.title {
-  font: 700 1rem Montserrat, Arial, Sans-Serif;
+.card-title {
+  font:
+    700 1rem Montserrat,
+    Arial,
+    Sans-Serif;
   text-align: center;
   margin-top: 0.3rem;
+
+  /* Troncature propre */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  box-sizing: border-box; /* Pour que le padding soit pris en compte dans la largeur */
+  width: 100%;
 }

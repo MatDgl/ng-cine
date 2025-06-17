@@ -2,18 +2,21 @@ import { Component, Input } from '@angular/core';
 import { MaterialModule } from '../../../shared/material/material.module';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../../models/models';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [MaterialModule, CommonModule],
+  imports: [MaterialModule, CommonModule, StarRatingComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  @Input() data: Movie | null = null;
+  // @Input() data: Movie | null = null;
+  @Input() data!: Movie;
 
-  getStars(rating: number): number[] {
-    return Array(Math.round(rating)).fill(0);
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = 'assets/img/movie/default.png';
   }
 }

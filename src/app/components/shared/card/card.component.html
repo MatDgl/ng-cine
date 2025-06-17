@@ -1,20 +1,23 @@
 @if (data) {
-<div class="card">
-    <a [href]="data.href || ''">
-        <div class="card-img-container">
-            <img [src]="data.src" [alt]="data.title" class="card-img">
-            @if (data.rating) {
-            <div class="card-bottom">
-                @for (star of getStars(data.rating); track star) {
-                <mat-icon aria-label="Étoiles" style="font-size: 1.4rem">star</mat-icon>
-                }
-            </div>
-            }
+  <div class="card">
+    <div class="card-img-container">
+      <a href="/">
+        <img
+          [src]="'assets/img/movie/' + data.src + '.jpg'"
+          [alt]="data.title"
+          class="card-img"
+          (error)="onImageError($event)"
+        />
+      </a>
+      @if (data.rating) {
+        <div class="card-bottom">
+          <app-star-rating [data]="data"></app-star-rating>
         </div>
-    </a>
+      }
+    </div>
 
     <div class="card-title">
-        <h5 class="title">{{ data.title }}</h5>
+      {{ data.title }}
     </div>
-</div>
+  </div>
 }

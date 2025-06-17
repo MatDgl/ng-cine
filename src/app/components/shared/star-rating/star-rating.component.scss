@@ -1,0 +1,10 @@
+.star-rating {
+  display: flex;
+  cursor: pointer;
+
+  mat-icon {
+    font-size: 1.4rem;
+    color: #ffd700;
+    transition: color 0.2s;
+  }
+}

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FiltersService } from '../../../services/FiltersService';
 import { MaterialModule } from '../../../shared/material/material.module';
 import { CardComponent } from '../../shared/card/card.component';
@@ -15,10 +15,14 @@ import { combineLatest, map } from 'rxjs';
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss',
 })
-export class SeenMovieComponent {
+export class SeenMovieComponent implements OnInit {
   readonly context = Context.MOVIE;
 
   constructor(private filterService: FiltersService) {}
+
+  ngOnInit(): void {
+    this.filterService.loadMovies();
+  }
 
   movies$ = this.filterService.limitedMovies$;
 

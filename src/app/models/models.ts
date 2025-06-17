@@ -2,7 +2,6 @@ export interface Movie {
   id: number;
   title: string;
   src: string;
-  href?: string;
   rating?: number; // Optional property for rating
   lastModified?: Date; // Optional property for last modified date
 }

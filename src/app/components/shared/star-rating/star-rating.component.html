@@ -1,0 +1,12 @@
+<div class="star-rating" (mouseleave)="clearHover()">
+  @for (index of starIndexes; track index) {
+    <mat-icon
+      (mousemove)="onMouseMove($event, index)"
+      [matTooltip]="tooltipText()"
+      [matTooltipPosition]="'above'"
+      aria-label="Étoiles"
+      (click)="onClickRating()"
+      >{{ getStarIcon(index) }}</mat-icon
+    >
+  }
+</div>
